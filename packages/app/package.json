@@ -49,6 +49,7 @@
     "@backstage/plugin-user-settings": "^0.8.14",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "^11.13.0",
+    "@janus-idp/backstage-plugin-rules": "*",
     "@mui/icons-material": "5.15.16",
     "@mui/material": "5.15.16",
     "@mui/styles": "5.15.16",

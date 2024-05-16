@@ -54,6 +54,8 @@ import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
+import { RulesFetchComponent } from '@janus-idp/backstage-plugin-rules';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -194,6 +196,13 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+    <EntityLayout.Route path="/rules" title="Scorecard">
+      <Grid container spacing={5} alignItems="stretch">
+        <Grid item xs="auto">
+          <RulesFetchComponent />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -211,6 +220,9 @@ const defaultEntityPage = (
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
+      {techdocsContent}
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/rules" title="Readiness">
       {techdocsContent}
     </EntityLayout.Route>
   </EntityLayout>
