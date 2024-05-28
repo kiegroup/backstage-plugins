@@ -4,6 +4,8 @@ import express from 'express';
 import Router from 'express-promise-router';
 import { Logger } from 'winston';
 
+import { YardServerConnection } from './YardServerConnection';
+
 export interface RouterOptions {
   logger: Logger;
 }
@@ -17,17 +19,21 @@ export async function createRouter(
   router.use(express.json());
 
   router.get('/health', (_, response) => {
-    logger.info('PONG!');
+    logger.info('PONG1!');
     response.json({ status: 'ok' });
   });
 
   router.get('/health2', (_, response) => {
-    logger.info('PONG!');
+    logger.info('PONG2!');
     response.json({ status: 'ok' });
   });
 
   router.get('/scorecards', (_, response) => {
-    logger.info('PONG!');
+    new YardServerConnection().run().then(response => {
+      logger.info('Response from Yard Server: ' + JSON.stringify(response));
+    });
+
+    logger.info('PONG3!');
 
     response.json({
       results: [
