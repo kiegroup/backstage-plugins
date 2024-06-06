@@ -1,2 +1,5 @@
 name: Jira
 api: http://something
+outputs:
+  - name: Number of Jira Issues
+    from: total

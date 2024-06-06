@@ -4,7 +4,7 @@ import express from 'express';
 import Router from 'express-promise-router';
 import { Logger } from 'winston';
 
-import { YardServerConnection } from './YardServerConnection';
+import { runScorecards } from './ScoreCardRunner';
 
 export interface RouterOptions {
   logger: Logger;
@@ -28,26 +28,13 @@ export async function createRouter(
     response.json({ status: 'ok' });
   });
 
-  router.get('/scorecards', (_, response) => {
-    new YardServerConnection().run().then(response => {
-      logger.info('Response from Yard Server: ' + JSON.stringify(response));
-    });
+  router.get('/scorecards', async (_, response) => {
+    const records = await runScorecards();
 
     logger.info('PONG3!');
 
     response.json({
-      results: [
-        {
-          status: 'Ok',
-          measureValue: '50',
-          measureName: 'Code coverage',
-        },
-        {
-          status: 'Warning',
-          measureValue: '90',
-          measureName: 'Security Issues',
-        },
-      ],
+      results: records,
     });
   });
 
