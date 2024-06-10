@@ -3,17 +3,7 @@ import yaml from 'js-yaml';
 
 import * as path from 'path';
 
-export interface YardContent {
-  name: string;
-  fileName: string;
-  yaml: string;
-  json: any;
-}
-
-export interface YardModule {
-  configuration: any;
-  content: YardContent[];
-}
+import { Configuration, YardContent, YardModule } from './YardModule';
 
 async function readFiles(folder: string): Promise<string[]> {
   return new Promise<string[]>(resolve => {
@@ -27,7 +17,7 @@ async function getModule(
   location: string,
   folderFiles: string[],
 ): Promise<YardModule> {
-  const configurationYml = await fs.readFile(
+  const configurationYmlPath = await fs.readFile(
     path.join(location, 'configuration.yml'),
     'utf8',
   );
@@ -48,8 +38,12 @@ async function getModule(
     }
   }
 
+  const configurationJSON = yaml.load(configurationYmlPath);
+
+  const configuration = configurationJSON as Configuration;
+
   return {
-    configuration: yaml.load(configurationYml),
+    configuration: configuration,
     content: contents,
   };
 }

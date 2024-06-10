@@ -1,16 +1,25 @@
 import 'http';
 
+import { getJSONMappingForYard } from './InputServiceConnection';
 import { yardFiles } from './YardFiles';
-import { call } from './YardServerConnection';
+import { callYardServer } from './YardServerConnection';
 
 // TODO no files set
-// TODO connection to service broken
+// TODO Figure how to report connection to service broken
 // TODO how to configure the individual service, not every scorecard is for everything
 
 export interface Record {
   status: String;
   measureValue: number;
   measureName: String;
+  maxValue: number;
+  yaml: string;
+  thresholds: Threshold[];
+}
+
+export interface Threshold {
+  name: string;
+  value: number;
 }
 
 export async function runScorecards(): Promise<Record[]> {
@@ -21,13 +30,26 @@ export async function runScorecards(): Promise<Record[]> {
     try {
       const configuration = yardModule.configuration;
 
+      const yardInputs = await getJSONMappingForYard(configuration);
+
       for await (const yardContent of yardModule.content) {
-        const result = await call(yardContent.json);
-        console.log('Result ' + JSON.stringify(result));
+        const result = await callYardServer(yardContent.json, yardInputs);
         results.push({
           status: 'aaa',
           measureValue: result.Score,
           measureName: yardContent.name,
+          maxValue: 100,
+          yaml: yardContent.yaml,
+          thresholds: [
+            {
+              name: 'Blocking',
+              value: 50,
+            },
+            {
+              name: 'Decent',
+              value: 90,
+            },
+          ],
         });
       }
     } catch (e) {
