@@ -1,0 +1,1 @@
+export { AkrivisHomeComponent } from './AkrivisHomeComponent';

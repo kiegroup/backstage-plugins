@@ -1,1 +1,0 @@
-export { RulesComponent } from './RulesComponent';

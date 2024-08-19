@@ -1,9 +1,29 @@
 import { createApiRef } from '@backstage/core-plugin-api';
 
-import { Job, RawData, RawDataDetail, ScoreCard } from './types';
+import {
+  Card,
+  CardConfig,
+  CardData,
+  Job,
+  RawData,
+  RawDataDetail,
+  ScoreCardResult,
+} from './types';
 
 export interface ScoreCardApi {
-  listScoreCards(): Promise<{ results: ScoreCard[] }>;
+  createCard(card: Card, config: CardConfig): Promise<Response>;
+
+  deleteCard(id: number): Promise<Response>;
+
+  getCardData(cardId: number): Promise<CardData>;
+
+  listCardResults(): Promise<{ results: ScoreCardResult[] }>;
+
+  listCardResultHistory(
+    cardId: number,
+  ): Promise<{ results: ScoreCardResult[] }>;
+
+  listScoreCards(): Promise<{ results: Card[] }>;
 
   getJobs(): Promise<{ results: Job[] }>;
 
@@ -15,6 +35,8 @@ export interface ScoreCardApi {
   ): Promise<{ results: RawDataDetail }>;
 
   testJob(jobId: number): Promise<Response>;
+
+  activate(jobId: number): Promise<Response>;
 
   deleteJob(jobId: number): Promise<Response>;
 

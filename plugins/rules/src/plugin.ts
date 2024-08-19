@@ -19,7 +19,7 @@ export const rulesPlugin = createPlugin({
         discoveryApi: discoveryApiRef,
         configApi: configApiRef,
       },
-      factory: ({ discoveryApi , configApi}) =>
+      factory: ({ discoveryApi, configApi }) =>
         new ScoreCardBackendClient({ discoveryApi, configApi }),
     }),
   ],
@@ -31,8 +31,7 @@ export const rulesPlugin = createPlugin({
 export const RulesPage = rulesPlugin.provide(
   createRoutableExtension({
     name: 'RulesPage',
-    component: () =>
-      import('./components/RulesComponent').then(m => m.RulesComponent),
+    component: () => import('./components').then(m => m.Router),
     mountPoint: rootRouteRef,
   }),
 );

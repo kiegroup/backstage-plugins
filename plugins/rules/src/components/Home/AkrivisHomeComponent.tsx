@@ -10,11 +10,12 @@ import {
   SupportButton,
 } from '@backstage/core-components';
 
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
-import { RulesFetchComponent } from '../RulesFetchComponent';
+import { ScoreCardsTable } from '../Cards';
+import { JobsTable } from '../Jobs';
 
-export const RulesComponent = () => {
+export const AkrivisHomeComponent = () => {
   return (
     <Page themeId="tool">
       <Header title="Welcome to Scorecard" subtitle="Optional subtitle">
@@ -27,14 +28,14 @@ export const RulesComponent = () => {
         </ContentHeader>
         <Grid container spacing={3} direction="column">
           <Grid item>
-            <InfoCard title="Information card">
-              <Typography variant="body1">
-                All content should be wrapped in a card like this.
-              </Typography>
+            <InfoCard title="Jobs">
+              <JobsTable />
             </InfoCard>
           </Grid>
           <Grid item>
-            <RulesFetchComponent />
+            <InfoCard title="Cards">
+              <ScoreCardsTable />
+            </InfoCard>
           </Grid>
         </Grid>
       </Content>

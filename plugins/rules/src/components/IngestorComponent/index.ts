@@ -1,1 +1,0 @@
-export { IngestorComponent } from './IngestorComponent';
