@@ -58,10 +58,7 @@ import {
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import {
-  IngestorComponent,
-  RulesFetchComponent,
-} from '@janus-idp/backstage-plugin-rules';
+import { ScoreCardsView } from '@janus-idp/backstage-plugin-rules';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -208,18 +205,7 @@ const websiteEntityPage = (
       {techdocsContent}
     </EntityLayout.Route>
     <EntityLayout.Route path="/rules" title="Scorecard">
-      <Grid container spacing={5} alignItems="stretch">
-        <Grid item xs="auto">
-          <RulesFetchComponent />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route>
-    <EntityLayout.Route path="/ingestor" title="Ingestor">
-      <Grid container spacing={5} alignItems="stretch">
-        <Grid item xs="auto">
-          <IngestorComponent />
-        </Grid>
-      </Grid>
+      <ScoreCardsView />
     </EntityLayout.Route>
   </EntityLayout>
 );

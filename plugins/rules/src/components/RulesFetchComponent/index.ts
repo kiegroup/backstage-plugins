@@ -1,1 +1,0 @@
-export { RulesFetchComponent } from './RulesFetchComponent';

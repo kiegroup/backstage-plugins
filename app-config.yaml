@@ -49,7 +49,7 @@ proxy:
     # Change to "false" in case of using self hosted quay instance with a self-signed certificate
     secure: true
   '/ingestor/api':
-    target: 'http://localhost:8082'
+    target: 'http://localhost:8083'
     headers:
       X-Requested-With: 'XMLHttpRequest'
     changeOrigin: true

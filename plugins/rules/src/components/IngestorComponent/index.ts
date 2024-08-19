@@ -1,1 +1,1 @@
-export { IngestorComponent } from './IngestorComponent';
+export { JobsTable } from './JobsTable';
