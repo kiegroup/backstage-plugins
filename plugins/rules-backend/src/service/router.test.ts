@@ -1,16 +1,20 @@
-import { getVoidLogger } from '@backstage/backend-common';
+import { mockServices } from '@backstage/backend-test-utils';
+import { ConfigReader } from '@backstage/config';
 
 import express from 'express';
 import request from 'supertest';
 
 import { createRouter } from './router';
 
+const logger = mockServices.logger.mock();
+
 describe('createRouter', () => {
   let app: express.Express;
 
   beforeAll(async () => {
     const router = await createRouter({
-      logger: getVoidLogger(),
+      logger,
+      config: new ConfigReader({})
     });
     app = express().use(router);
   });

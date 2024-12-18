@@ -2,8 +2,7 @@
   "extends": ["//"],
   "tasks": {
     "tsc": {
-      "outputs": ["../../dist-types/plugins/rules/**"],
-      "dependsOn": ["^tsc"]
+      "outputs": ["../../dist-types/plugins/rules-backend/**"]
     }
   }
 }
