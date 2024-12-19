@@ -48,6 +48,12 @@
     "react": "16.13.1 || ^17.0.0 || ^18.0.0",
     "react-router-dom": "^6.23.0"
   },
+  "scalprum": {
+    "name": "red-hat-developer-hub.backstage-plugin-scorecards",
+    "exposedModules": {
+      "RulesPlugin": "./src/index.ts"
+    }
+  },
   "devDependencies": {
     "@backstage/cli": "0.26.4",
     "@backstage/core-app-api": "1.12.4",

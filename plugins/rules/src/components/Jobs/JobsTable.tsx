@@ -50,14 +50,13 @@ export const JobsTable: React.FunctionComponent = () => {
       onClick: () => {
         scoreCardApi
           .testJob(job.id)
-          .then(response => response.json())
           .then(response => alert(JSON.stringify(response)));
       },
     },
     {
       title: 'Enable',
       onClick: () => {
-        scoreCardApi.activate(job.id).then(resp => reload());
+        scoreCardApi.activate(job.id).then(_ => reload());
       },
     },
     {
@@ -66,7 +65,7 @@ export const JobsTable: React.FunctionComponent = () => {
     {
       title: 'Delete',
       onClick: () => {
-        scoreCardApi.deleteJob(job.id).then(resp => reload());
+        scoreCardApi.deleteJob(job.id).then(_ => reload());
       },
     },
   ];

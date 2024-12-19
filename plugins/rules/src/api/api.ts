@@ -11,6 +11,10 @@ import {
 } from './types';
 
 export interface ScoreCardApi {
+  getHealth(): Promise<{ status: string }>;
+
+  listScoreCards(): Promise<{ results: Card[] }>;
+
   createCard(card: Card, config: CardConfig): Promise<Response>;
 
   deleteCard(id: number): Promise<Response>;
