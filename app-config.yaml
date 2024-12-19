@@ -33,6 +33,9 @@ backend:
   cache:
     store: memory
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+  scorecards:
+    ingestor:
+      url: http://localhost:8083
 
 integrations: {}
 
@@ -46,18 +49,6 @@ proxy:
     changeOrigin: true
     # Change to "false" in case of using self hosted quay instance with a self-signed certificate
     secure: true
-  '/ingestor/api':
-    target: 'http://localhost:8083'
-    headers:
-      X-Requested-With: 'XMLHttpRequest'
-    changeOrigin: true
-    secure: false
-  '/processor/api':
-    target: 'http://localhost:8080'
-    headers:
-      X-Requested-With: 'XMLHttpRequest'
-    changeOrigin: true
-    secure: false
 
 quay:
   uiUrl: 'https://quay.io'
